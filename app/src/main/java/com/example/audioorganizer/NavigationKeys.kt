@@ -1,6 +1,2 @@
 package com.example.audioorganizer
-
-import androidx.navigation3.runtime.NavKey
-import kotlinx.serialization.Serializable
-
-@Serializable data object Main : NavKey
+// Navigation keys not used in current single-screen architecture

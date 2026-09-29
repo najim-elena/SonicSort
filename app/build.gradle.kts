@@ -61,30 +61,34 @@ dependencies {
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.ui.tooling.preview)
   implementation(libs.androidx.compose.material3)
-  // Tooling
   debugImplementation(libs.androidx.compose.ui.tooling)
-  // Instrumented tests
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-  // Local tests: jUnit, coroutines, Android runner
-  testImplementation(libs.junit)
-  testImplementation(libs.kotlinx.coroutines.test)
-
-  // Instrumented tests: jUnit rules and runners
-  androidTestImplementation(libs.androidx.test.core)
-  androidTestImplementation(libs.androidx.test.ext.junit)
-  androidTestImplementation(libs.androidx.test.runner)
-  androidTestImplementation(libs.androidx.test.espresso.core)
 
   // Navigation
   implementation(libs.androidx.navigation3.ui)
   implementation(libs.androidx.navigation3.runtime)
   implementation(libs.androidx.lifecycle.viewmodel.navigation3)
-}
 
+  // Local tests
+  testImplementation(libs.junit)
+  testImplementation(libs.kotlinx.coroutines.test)
 
-dependencies {
+  // Instrumented tests
+  androidTestImplementation(libs.androidx.test.core)
+  androidTestImplementation(libs.androidx.test.ext.junit)
+  androidTestImplementation(libs.androidx.test.runner)
+  androidTestImplementation(libs.androidx.test.espresso.core)
+
+  // ── Networking: Gemini REST API via OkHttp (replaces broken generativeai SDK) ──
+  // The com.google.ai.client.generativeai:0.9.0 SDK does NOT support audio input
+  // on Android correctly. We use the REST API directly instead.
+  implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+  // JSON parsing (standard Android JSONObject is used; no extra lib needed)
+  // Kotlin serialization kept for future use
   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-  implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+
+  // Coroutines
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 }
